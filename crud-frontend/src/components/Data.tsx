@@ -6,6 +6,11 @@ import { CrudType } from '../interface/DataType'
 
 
 export const CrudDisplayData: FC<CrudType> = ({ UsersType }) => {
+
+    
+
+
+
     return (
         <div>
             {UsersType.map((e, index) => (
@@ -18,6 +23,8 @@ export const CrudDisplayData: FC<CrudType> = ({ UsersType }) => {
                             <div>{e.user_tel}</div>
                         </Card.Text>
                         <Button variant="primary">DELETE</Button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <Button variant="primary">EDIT</Button>
                     </Card.Body>
                 </Card>
             ))}

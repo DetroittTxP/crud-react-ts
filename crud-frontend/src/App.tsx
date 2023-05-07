@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { CrudForm } from './components/Form'
 import { CrudDisplayData } from './components/Data'
+import { FormType } from './interface/DataType'
 import axios from 'axios'
 
 import { Button } from 'react-bootstrap'
@@ -16,10 +17,18 @@ function App() {
       .catch(err => alert(err))
   },[])
 
+  const onGetnewdata=(data:FormType) => {
+        
+
+
+  }
+
+
+
   return (
     <div className='container' >
       <h2>REACT-TS-CRUD</h2>
-      <CrudForm />
+      <CrudForm onClickSubmit={onGetnewdata} />
       <br />
       <Button onClick={() => Setshowuser(!Showuser)} style={{ position: 'relative', left: 180, bottom: 61 }}>
          {Showuser ? "HIDE" : "SHOW"} USER
