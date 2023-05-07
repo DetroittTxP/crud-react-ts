@@ -25,6 +25,12 @@ export const CrudForm: FC<FormFuncType> = ({ onClickSubmit }) => {
 
     const onSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
+        SetFormData(prev => {
+            return {
+                ...prev,
+                id: Math.floor(Math.random() * 999999) 
+            }
+        })
         onClickSubmit(FormData)
     }
 
