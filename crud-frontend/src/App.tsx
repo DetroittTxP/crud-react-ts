@@ -6,9 +6,10 @@ import { FormType } from './interface/DataType'
 import axios from 'axios'
 
 import { Button } from 'react-bootstrap'
+
 function App() {
 
-  const [userslist, Setuserlist] = useState([]);
+  const [userslist, Setuserlist] = useState<FormType[]>([]);
   const [Showuser, Setshowuser] = useState(false);
 
   useEffect(() => {
@@ -19,7 +20,9 @@ function App() {
 
   const onGetnewdata=(data:FormType) => {
         
-      console.log(data);
+     Setuserlist((prev) =>{
+      return [data,...prev]
+     })
       
 
   }
