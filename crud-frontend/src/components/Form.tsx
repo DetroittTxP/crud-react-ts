@@ -1,11 +1,11 @@
 import React, { useState, FC } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { FormFuncType} from '../interface/DataType'
+import { FormFuncType } from '../interface/DataType'
 
-export const CrudForm: FC<FormFuncType> = ({onClickSubmit}) => {
+export const CrudForm: FC<FormFuncType> = ({ onClickSubmit }) => {
 
     const [FormData, SetFormData] = useState({
-        id:0,
+        id: Math.floor(Math.random() * 9999),
         user_name: '',
         user_id: '',
         user_password: '',
@@ -29,8 +29,7 @@ export const CrudForm: FC<FormFuncType> = ({onClickSubmit}) => {
     }
 
     return (
-        <Form>
-
+        <Form onSubmit={onSubmitForm}>
             <Form.Group controlId='user_name'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control onChange={onChangeInput} type='text' style={{ width: 300 }} placeholder='input your name' />
@@ -56,7 +55,7 @@ export const CrudForm: FC<FormFuncType> = ({onClickSubmit}) => {
                 <Form.Control onChange={onChangeInput} type='text' style={{ width: 300 }} placeholder='input tel-number' />
             </Form.Group>
             <br />
-            <Button>ADD USERS</Button>
+            <Button type='submit'>ADD USERS</Button>
         </Form>
     )
 }

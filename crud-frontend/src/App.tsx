@@ -19,7 +19,8 @@ function App() {
 
   const onGetnewdata=(data:FormType) => {
         
-
+      console.log(data);
+      
 
   }
 
