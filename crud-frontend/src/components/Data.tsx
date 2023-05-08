@@ -1,19 +1,27 @@
 
-import { useState, FC } from 'react'
+import { useState, FC, useEffect } from 'react'
 import { Card,Button } from 'react-bootstrap'
-import { CrudType } from '../interface/DataType'
+import { CrudType,FormType } from '../interface/DataType'
 
+export const CrudDisplayData: FC<CrudType> = ({ UsersType,ongetdeletedata,ongetEdit }) => {
 
+    const [rawdata,Setrawdata] = useState(UsersType)
 
-export const CrudDisplayData: FC<CrudType> = ({ UsersType }) => {
+    useEffect(() => {
+        Setrawdata(UsersType)
+    },[UsersType])
 
-    
+    const OnClickDelete =(id:number) =>{
+            let deleteddata = rawdata.filter(value => value.id !== id)
+            Setrawdata(deleteddata)
+            ongetdeletedata(deleteddata)
+    }
 
-
+ 
 
     return (
         <div>
-            {UsersType.map((e, index) => (
+            {rawdata.map((e, index) => (
                 <Card key={index}>
                     <Card.Body>
                         <Card.Title>{e.user_name}</Card.Title>
@@ -22,9 +30,9 @@ export const CrudDisplayData: FC<CrudType> = ({ UsersType }) => {
                             <div>{e.user_email}</div>
                             <div>{e.user_tel}</div>
                         </Card.Text>
-                        <Button variant="primary">DELETE</Button>
+                        <Button onClick={()=>OnClickDelete(e.id)} variant="primary">DELETE</Button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <Button variant="primary">EDIT</Button>
+                        <Button onClick={() => ongetEdit(e.id) } variant="primary">EDIT</Button>
                     </Card.Body>
                 </Card>
             ))}

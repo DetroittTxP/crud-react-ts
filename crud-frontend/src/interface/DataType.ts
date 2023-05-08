@@ -7,6 +7,8 @@ export interface CrudType {
         user_email:string,
         user_tel:string
     }[],
+    ongetdeletedata:(data:FormType[])=>void,
+    ongetEdit:(id:number)=>void
 }
 
 export interface FormType{
@@ -18,8 +20,12 @@ export interface FormType{
     user_tel:string
 }
 
+
+
 export interface FormFuncType {
     onClickSubmit:(data:FormType) => void
 }
+
+
 
 

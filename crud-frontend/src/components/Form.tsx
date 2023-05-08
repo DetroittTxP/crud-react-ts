@@ -5,7 +5,7 @@ import { FormFuncType } from '../interface/DataType'
 export const CrudForm: FC<FormFuncType> = ({ onClickSubmit }) => {
 
     const [FormData, SetFormData] = useState({
-        id: Math.floor(Math.random() * 9999),
+        id: Math.floor(Math.random() * 999999),
         user_name: '',
         user_id: '',
         user_password: '',
