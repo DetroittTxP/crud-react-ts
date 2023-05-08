@@ -14,6 +14,14 @@ function App() {
 
   const [userslist, Setuserlist] = useState<FormType[]>([]);
   const [Showuser, Setshowuser] = useState(false);
+  const [editdata,Seteditdata] = useState({
+    id:0,
+    user_name:'',
+    user_id:'',
+    user_password:'',
+    user_email:'',
+    user_tel:''
+  })
   const [id,Setid] = useState(0)
   const location = useLocation();
 
@@ -35,8 +43,12 @@ function App() {
   }
 
   const onGetEditData=(id:number)=>{
-       console.log(id);
        Setid(id)
+
+       const filetered = userslist.filter(value => value.id === id)
+       console.log(filetered[0]);
+       
+       Seteditdata(filetered[0])
        
   }
 
@@ -48,7 +60,7 @@ function App() {
 
       <Routes>
           <Route path='/' element={<CrudForm onClickSubmit={onGetnewdata} />}/>
-          <Route path='/edit' element={<Edit UsersType={userslist} id={id} />}/>
+          <Route path='/edit' element={<Edit UsersType={editdata} id={id} />}/>
       </Routes>
 
       
