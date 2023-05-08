@@ -23,16 +23,16 @@ export const CrudForm: FC<FormFuncType> = ({ onClickSubmit }) => {
 
     }
 
-    const onSubmitForm =  (event: React.ChangeEvent<HTMLFormElement>) => {
+    const onSubmitForm =  async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        // await axios.post('http://localhost:4444/insert')
-        // .then(res => {
-        //    alert('INSERT DATA SUCCESSS')
-        // })
-        // .catch(err => {
-        //    alert(err)
-        // })
+        await axios.post('http://localhost:4444/insert',{FormData})
+        .then(res => {
+           alert('INSERT DATA SUCCESSS')
+        })
+        .catch(err => {
+           alert(err)
+        })
 
 
         SetFormData(prev => {

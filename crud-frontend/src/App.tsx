@@ -17,11 +17,11 @@ function App() {
   const [id,Setid] = useState(0)
   const location = useLocation();
 
-  // useEffect(() => {
-  //     axios.get('http://localhost:4444/users')
-  //     .then(res => Setuserlist(res.data))
-  //     .catch(err => alert(err))
-  // },[])
+  useEffect(() => {
+      axios.get('http://localhost:4444/users')
+      .then(res => Setuserlist(res.data))
+      .catch(err => alert(err))
+  },[])
 
   const onGetnewdata=(data:FormType) => {
         

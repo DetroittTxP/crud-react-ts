@@ -35,6 +35,32 @@ app.get('/users',(req,res) => {
     })
 })
 
+app.post('/insert',(req,res) => {
+    const {id,user_name,user_id,user_password,user_email,user_tel} = req.body.FormData;
+    db.query(
+        'INSERT INTO users (id,user_name,user_id,user_password,user_email,user_tel) VALUES (?,?,?,?,?,?)',
+        [id,user_name,user_id,user_password,user_email,user_tel],
+        (err,result,fields) => {
+             if(err)console.log(err);
+             res.send({STATUS:'INSERT SUCCESSS'})
+        }
+    );
+})
+
+app.post('/delete',(req,res) => {
+    const {id} = req.body
+    db.query('DELETE FROM users WHERE id = ? ',
+    [id],
+    (err,results,field) =>{
+        if(err){
+            res.send(err)
+        }
+        res.send({STATUS:'DELETE SUCCESS'})
+    }
+    )
+
+})
+
 
 
 app.listen('4444',(err) => {

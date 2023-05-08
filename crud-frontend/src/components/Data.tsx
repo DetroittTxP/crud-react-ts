@@ -3,6 +3,7 @@ import { useState, FC, useEffect } from 'react'
 import { Card,Button } from 'react-bootstrap'
 import { CrudType,FormType } from '../interface/DataType'
 import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 
 export const CrudDisplayData: FC<CrudType> = ({ UsersType,ongetdeletedata,ongetEdit }) => {
 
@@ -13,7 +14,11 @@ export const CrudDisplayData: FC<CrudType> = ({ UsersType,ongetdeletedata,ongetE
         Setrawdata(UsersType)
     },[UsersType])
 
-    const OnClickDelete =(id:number) =>{
+    const OnClickDelete = async (id:number) =>{
+            await axios.post('http://localhost:4444/delete',{id})
+            .then(res => alert('DELETE SUCCESS'))
+            .catch(err => alert(err))
+
             let deleteddata = rawdata.filter(value => value.id !== id)
             Setrawdata(deleteddata)
             ongetdeletedata(deleteddata)
