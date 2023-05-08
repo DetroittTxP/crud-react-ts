@@ -14,6 +14,7 @@ function App() {
 
   const [userslist, Setuserlist] = useState<FormType[]>([]);
   const [Showuser, Setshowuser] = useState(false);
+  const [id,Setid] = useState(0)
   const location = useLocation();
 
   // useEffect(() => {
@@ -35,6 +36,7 @@ function App() {
 
   const onGetEditData=(id:number)=>{
        console.log(id);
+       Setid(id)
        
   }
 
@@ -46,7 +48,7 @@ function App() {
 
       <Routes>
           <Route path='/' element={<CrudForm onClickSubmit={onGetnewdata} />}/>
-          {/* <Route path='/edit' element={<Edit UsersType={userslist} />}/> */}
+          <Route path='/edit' element={<Edit UsersType={userslist} id={id} />}/>
       </Routes>
 
       
@@ -56,7 +58,7 @@ function App() {
       { location.pathname  === '/' && <Button onClick={() => Setshowuser(!Showuser)} style={{ position: 'relative', left: 180, bottom: 61 }}>
          {Showuser ? "HIDE" : "SHOW"} USER
       </Button>}
-      {Showuser && <CrudDisplayData ongetEdit={onGetEditData} ongetdeletedata={onGetnewDeletedData} UsersType={userslist}  />}
+      {Showuser && location.pathname === '/' &&  <CrudDisplayData ongetEdit={onGetEditData} ongetdeletedata={onGetnewDeletedData} UsersType={userslist}  />}
       
     </div>
   )

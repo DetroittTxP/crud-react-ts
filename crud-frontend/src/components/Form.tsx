@@ -1,7 +1,7 @@
 import React, { useState, FC } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { FormFuncType } from '../interface/DataType'
-
+import axios from 'axios'
 export const CrudForm: FC<FormFuncType> = ({ onClickSubmit }) => {
 
     const [FormData, SetFormData] = useState({
@@ -23,8 +23,18 @@ export const CrudForm: FC<FormFuncType> = ({ onClickSubmit }) => {
 
     }
 
-    const onSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
+    const onSubmitForm =  (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        // await axios.post('http://localhost:4444/insert')
+        // .then(res => {
+        //    alert('INSERT DATA SUCCESSS')
+        // })
+        // .catch(err => {
+        //    alert(err)
+        // })
+
+
         SetFormData(prev => {
             return {
                 ...prev,

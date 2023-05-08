@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
-import { CrudType } from '../interface/DataType'
+import { EditType } from '../interface/DataType'
 
 
-export const Edit:React.FC<CrudType> =({UsersType})=>{
+export const Edit:React.FC<EditType> =({UsersType,id})=>{
 
     return(
         <div>

@@ -2,10 +2,12 @@
 import { useState, FC, useEffect } from 'react'
 import { Card,Button } from 'react-bootstrap'
 import { CrudType,FormType } from '../interface/DataType'
+import {useNavigate} from 'react-router-dom'
 
 export const CrudDisplayData: FC<CrudType> = ({ UsersType,ongetdeletedata,ongetEdit }) => {
 
     const [rawdata,Setrawdata] = useState(UsersType)
+    const navigate = useNavigate();
 
     useEffect(() => {
         Setrawdata(UsersType)
@@ -32,7 +34,10 @@ export const CrudDisplayData: FC<CrudType> = ({ UsersType,ongetdeletedata,ongetE
                         </Card.Text>
                         <Button onClick={()=>OnClickDelete(e.id)} variant="primary">DELETE</Button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <Button onClick={() => ongetEdit(e.id) } variant="primary">EDIT</Button>
+                        <Button onClick={() => {
+                             ongetEdit(e.id);
+                             navigate('/edit')
+                        }} variant="primary">EDIT</Button>
                     </Card.Body>
                 </Card>
             ))}
