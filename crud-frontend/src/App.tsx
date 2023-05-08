@@ -60,7 +60,7 @@ function App() {
 
       <Routes>
           <Route path='/' element={<CrudForm onClickSubmit={onGetnewdata} />}/>
-          <Route path='/edit' element={<Edit UsersType={editdata} id={id} />}/>
+          <Route path='/edit' element={<Edit UsersType={editdata} />}/>
       </Routes>
 
       

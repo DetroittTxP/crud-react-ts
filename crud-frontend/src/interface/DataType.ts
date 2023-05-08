@@ -20,7 +20,7 @@ export interface EditType {
         user_email:string,
         user_tel:string
     } ,
-    id:number,
+    
 }
 
 export interface FormType{
