@@ -22,7 +22,6 @@ function App() {
     user_email:'',
     user_tel:''
   })
-  const [id,Setid] = useState(0)
   const location = useLocation();
 
   useEffect(() => {
@@ -43,13 +42,17 @@ function App() {
   }
 
   const onGetEditData=(id:number)=>{
-       Setid(id)
+     
 
        const filetered = userslist.filter(value => value.id === id)
        console.log(filetered[0]);
        
        Seteditdata(filetered[0])
        
+  }
+
+  const onRecieveEditedData = (neweditdata:FormType) => {
+
   }
 
 
@@ -60,7 +63,7 @@ function App() {
 
       <Routes>
           <Route path='/' element={<CrudForm onClickSubmit={onGetnewdata} />}/>
-          <Route path='/edit' element={<Edit UsersType={editdata} />}/>
+          <Route path='/edit' element={<Edit ongetEditData={onRecieveEditedData} UsersType={editdata} />}/>
       </Routes>
 
       

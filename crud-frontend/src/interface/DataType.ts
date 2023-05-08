@@ -19,7 +19,8 @@ export interface EditType {
         user_password:string,
         user_email:string,
         user_tel:string
-    } ,
+    },
+    ongetEditData:(data:FormType) => void,
     
 }
 
