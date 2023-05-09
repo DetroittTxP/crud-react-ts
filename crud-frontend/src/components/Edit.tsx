@@ -9,7 +9,7 @@ export const Edit:React.FC<EditType> =({Maindata,UsersType,onRecieveEditData})=>
     const navigate = useNavigate()
 
     const [edit,Setedit] = useState(UsersType);
-    const [editedData,Setediteddata] = useState(Maindata)
+  
 
     const onEdit =(e:React.ChangeEvent<HTMLInputElement>) =>{
 
@@ -20,28 +20,31 @@ export const Edit:React.FC<EditType> =({Maindata,UsersType,onRecieveEditData})=>
             }
         }) 
 
-        onRecieveEditData(editedData)
+       
     }   
 
 
     const onSubmitUpdate = (e:React.ChangeEvent<HTMLFormElement>) =>{
         e.preventDefault();
 
-        const updatedItem = editedData.map((prev) => {
+        const updatedItem = Maindata.map((prev) => {
              if(prev.id === edit.id){
                 return {
                     ...prev,
                     user_name:edit.user_name,
-                    user_id:edit.id,
+                    user_id:edit.user_id,
                     user_password:edit.user_password,
                     user_email:edit.user_email,
                     user_tel:edit.user_tel
                 }
              }
+             return prev;
         })
 
-        console.log(updatedItem);
-        
+       
+        console.log(`FROM EDIT.TSX ${updatedItem[0].user_name}`);
+        onRecieveEditData(updatedItem)
+        navigate('/')
        
     }
     

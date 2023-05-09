@@ -29,7 +29,7 @@ function App() {
       .then(res => Setuserlist(res.data))
       .catch(err => alert(err))
   },[])
-
+  
   const onGetnewdata=(data:FormType) => {
         
      Setuserlist((prev) =>{
@@ -52,7 +52,7 @@ function App() {
   }
 
   const onRecieveEditedData = (neweditdata:FormType[]) => {
-
+      Setuserlist(neweditdata)
   }
 
 
