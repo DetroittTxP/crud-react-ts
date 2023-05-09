@@ -72,19 +72,18 @@ app.put('/edit/:id',(req,res) =>{
      const { id } = req.params;
      const  edit  = req.body; 
 
-    db.query('UPDATE users SET user_name = ? user_id = ? user_password = ? user_email = ? user_tel = ? WHERE id = ?',
+    db.query('UPDATE users SET user_name = ?, user_id = ?, user_password = ?, user_email = ?, user_tel = ? WHERE id = ?',
             [edit.user_name,edit.user_id,edit.user_password,edit.user_email,edit.user_tel,id],
             (err,results,fields) => {
                 if(err){
-                    console.log(err);
-                    res.status(500).send('Error updating user');
+                    res.send({STATUS:'UPDATE ERROR'})
                 }
                 res.send({STATUS:'UPDATE DATA SUCCESSFULLY'})
             }
     
         )
 
-     res.send('DATA SEND SUCCESSS')
+    
     
 })
 

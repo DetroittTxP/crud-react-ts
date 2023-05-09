@@ -26,7 +26,7 @@ export const Edit:React.FC<EditType> =({Maindata,UsersType,onRecieveEditData})=>
         e.preventDefault();
 
         await axios.put(`http://localhost:4444/edit/${edit.id}`,edit)
-        .then(res => alert(res.data))
+        .then(res => alert(res.data.STATUS))
         .catch(err => alert(err))
 
         const updatedItem = Maindata.map((prev) => {
