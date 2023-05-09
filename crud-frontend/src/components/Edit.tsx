@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { EditType } from '../interface/DataType'
 import {Form,Button} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import axios  from 'axios';
 
 
 export const Edit:React.FC<EditType> =({Maindata,UsersType,onRecieveEditData})=>{
@@ -19,13 +20,14 @@ export const Edit:React.FC<EditType> =({Maindata,UsersType,onRecieveEditData})=>
                 [e.target.id]:e.target.value
             }
         }) 
-
-       
     }   
 
-
-    const onSubmitUpdate = (e:React.ChangeEvent<HTMLFormElement>) =>{
+    const onSubmitUpdate = async (e:React.ChangeEvent<HTMLFormElement>) =>{
         e.preventDefault();
+
+        await axios.put(`http://localhost:4444/edit/${edit.id}`,edit)
+        .then(res => alert(res.data))
+        .catch(err => alert(err))
 
         const updatedItem = Maindata.map((prev) => {
              if(prev.id === edit.id){
@@ -41,8 +43,6 @@ export const Edit:React.FC<EditType> =({Maindata,UsersType,onRecieveEditData})=>
              return prev;
         })
 
-       
-        console.log(`FROM EDIT.TSX ${updatedItem[0].user_name}`);
         onRecieveEditData(updatedItem)
         navigate('/')
        

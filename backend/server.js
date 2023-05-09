@@ -2,15 +2,17 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
 const bodyparser = require('body-parser')
+require('dotenv').config()
+
 
 const app = express();
 app.use(cors());
 app.use(bodyparser.json());
 
 const db = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    database:'customerdata'
+    host:process.env.MYSQL_HOST,
+    user:process.env.MYSQL_USER,
+    database:process.env.MYSQL_DB
 })
 
 db.connect((err) => {
@@ -59,6 +61,17 @@ app.post('/delete',(req,res) => {
     }
     )
 
+})
+
+app.put('/edit/:id',(req,res) =>{
+     const { id } = req.params;
+     const  edit  = req.body;
+
+     console.log(id);
+     console.log(edit);
+
+     res.send('DATA SEND SUCCESSS')
+    
 })
 
 
