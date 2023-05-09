@@ -4,11 +4,12 @@ import {Form,Button} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 
-export const Edit:React.FC<EditType> =({UsersType,ongetEditData})=>{
+export const Edit:React.FC<EditType> =({Maindata,UsersType,onRecieveEditData})=>{
 
     const navigate = useNavigate()
 
     const [edit,Setedit] = useState(UsersType);
+    const [editedData,Setediteddata] = useState(Maindata)
 
     const onEdit =(e:React.ChangeEvent<HTMLInputElement>) =>{
 
@@ -17,13 +18,36 @@ export const Edit:React.FC<EditType> =({UsersType,ongetEditData})=>{
                 ...prev,
                 [e.target.id]:e.target.value
             }
-        })
-        ongetEditData(edit)
+        }) 
+
+        onRecieveEditData(editedData)
     }   
+
+
+    const onSubmitUpdate = (e:React.ChangeEvent<HTMLFormElement>) =>{
+        e.preventDefault();
+
+        const updatedItem = editedData.map((prev) => {
+             if(prev.id === edit.id){
+                return {
+                    ...prev,
+                    user_name:edit.user_name,
+                    user_id:edit.id,
+                    user_password:edit.user_password,
+                    user_email:edit.user_email,
+                    user_tel:edit.user_tel
+                }
+             }
+        })
+
+        console.log(updatedItem);
+        
+       
+    }
     
 
     return(
-        <Form >
+        <Form onSubmit={onSubmitUpdate}>
         <h2>EDIT PAGE</h2>    
         <Form.Group controlId='user_name'>
             <Form.Label>Name</Form.Label>

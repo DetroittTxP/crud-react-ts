@@ -20,7 +20,16 @@ export interface EditType {
         user_email:string,
         user_tel:string
     },
-    ongetEditData:(data:FormType) => void,
+    Maindata:{
+        id:number,
+        user_name:string
+        user_id:string,
+        user_password:string,
+        user_email:string,
+        user_tel:string
+    }[],
+
+    onRecieveEditData:(data:FormType[])=>void,
     
 }
 

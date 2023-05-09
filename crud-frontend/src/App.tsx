@@ -51,7 +51,7 @@ function App() {
        
   }
 
-  const onRecieveEditedData = (neweditdata:FormType) => {
+  const onRecieveEditedData = (neweditdata:FormType[]) => {
 
   }
 
@@ -63,7 +63,7 @@ function App() {
 
       <Routes>
           <Route path='/' element={<CrudForm onClickSubmit={onGetnewdata} />}/>
-          <Route path='/edit' element={<Edit ongetEditData={onRecieveEditedData} UsersType={editdata} />}/>
+          <Route path='/edit' element={<Edit Maindata={userslist} onRecieveEditData={onRecieveEditedData} UsersType={editdata} />}/>
       </Routes>
 
       
