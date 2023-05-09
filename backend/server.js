@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
 const bodyparser = require('body-parser')
+const swaggerUI = require('swagger-ui-express')
+const swaggerData = require('./swaggerDOCS.json')
 require('dotenv').config()
 
 
@@ -9,11 +11,14 @@ const app = express();
 app.use(cors());
 app.use(bodyparser.json());
 
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerData));
+
 const db = mysql.createConnection({
     host:process.env.MYSQL_HOST,
     user:process.env.MYSQL_USER,
     database:process.env.MYSQL_DB
 })
+
 
 db.connect((err) => {
     if(err){
@@ -65,10 +70,19 @@ app.post('/delete',(req,res) => {
 
 app.put('/edit/:id',(req,res) =>{
      const { id } = req.params;
-     const  edit  = req.body;
+     const  edit  = req.body; 
 
-     console.log(id);
-     console.log(edit);
+    db.query('UPDATE users SET user_name = ? user_id = ? user_password = ? user_email = ? user_tel = ? WHERE id = ?',
+            [edit.user_name,edit.user_id,edit.user_password,edit.user_email,edit.user_tel,id],
+            (err,results,fields) => {
+                if(err){
+                    console.log(err);
+                    res.status(500).send('Error updating user');
+                }
+                res.send({STATUS:'UPDATE DATA SUCCESSFULLY'})
+            }
+    
+        )
 
      res.send('DATA SEND SUCCESSS')
     
